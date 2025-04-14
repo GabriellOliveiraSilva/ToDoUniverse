@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+.bg-night {
+    background-color: #1c1b1b;
+}
+
+.bg-day {
+    background-color: #f0f0f0;
+}
+
+.bg-jet {
+    background-color: #2a2929;
+}
+
+.bg-blackOlive {
+    background-color: #444342;
+}
+.text-blackOlive {
+    color: #444342;
+}
+
+.bg-jonquil {
+    background-color: #f4d35e;
+}
+
+.text-jonquil {
+    color: #f4d35e;
+}
+
+.bg-selectiveYellow {
+    background-color: #ffb400;
+}
+
+.bg-text_yellow {
+    background-color: #85754d;
+}
+
+.text_yellow_primary {
+    color: #85754d;
+}
+
+.bg-text_white {
+    background-color: #f0f0f0;
+}
+
+.bg-text_gray {
+    background-color: #bababa;
+}
+
+.bg-gradient-jet-blackOlive {
+    background: linear-gradient(to right, #2a2929, #0f0f0f);
+}
+
+.bg-charcoal {
+    background-color: #36454F;
+}
