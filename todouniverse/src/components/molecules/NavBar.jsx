@@ -41,7 +41,6 @@ const NavBar = () => {
 
   const navLinks = [
     { path: '/dashboard', label: 'Dashboard' },
-    { path: '/tarefas', label: 'Tarefas' },
     { path: '/projetos', label: 'Projetos' },
     { path: '/configuracoes', label: 'Configurações' },
   ];

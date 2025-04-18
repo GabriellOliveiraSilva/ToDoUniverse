@@ -47,10 +47,16 @@
     background-color: #bababa;
 }
 
+.bg-charcoal {
+    background-color: #36454F;
+}
 .bg-gradient-jet-blackOlive {
     background: linear-gradient(to right, #2a2929, #0f0f0f);
 }
 
-.bg-charcoal {
-    background-color: #36454F;
-}
+/* #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    ;
+} */
