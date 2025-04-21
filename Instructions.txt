@@ -108,3 +108,15 @@ function App() {
 
 
 
+6. Componente para tailwin-scrollbar:
+>> npm install tailwind-scrollbar
+## Adicionar no tailwind.config.js
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  plugins: [require('tailwind-scrollbar')],
+}
+
+7. Biblioteca de ícones
+>> npm install lucide-react
+
+8. Biblioteca para notificações

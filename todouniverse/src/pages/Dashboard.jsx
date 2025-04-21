@@ -2,26 +2,42 @@
 import { useState } from "react"
 import { navBarIsOpen } from "../store/store";
 import NavBar from "../components/molecules/NavBar";
-
+import { Save, CircleCheck, CircleX   } from 'lucide-react';
+import { notificationSucess, notificationAlert } from "../components/molecules/Notification";
+import { Toaster } from "react-hot-toast";
+import _tasks from '../data/tasks.json'
 export default function Dashboard() {
 const {isOpen} =navBarIsOpen()
-const [tasks, setTasks] = useState([
-    { id: 1, title: "Completar relatório", status: "Pendente" },
-    { id: 2, title: "Reunião com cliente", status: "Em Andamento" },
-    { id: 3, title: "Revisar código", status: "Concluída" },
-    { id: 4, title: "Desenvolver nova feature", status: "Em Andamento" },
-    { id: 5, title: "Testar aplicação", status: "Pendente" },
-    { id: 6, title: "Documentar API", status: "Pendente" },
-    { id: 7, title: "Otimizar performance", status: "Concluída" },
-    { id: 8, title: "Corrigir bugs", status: "Em Andamento" },
-    { id: 9, title: "Implementar autenticação", status: "Pendente" },
-    { id: 10, title: "Fazer deploy", status: "Concluída" }]);
+    const [tasks, setTasks] = useState(_tasks)
+
+
+    const handleAddTask = (e) =>{
+        let title = document.getElementById('task').value
+        if(!title){
+            notificationAlert('A tarefa não pode estar vazia')
+            return
+        }
+        let id = tasks.length + 1
+        let task = {
+            id: id,
+            title: title,
+            status: 'Pendente'
+        }
+        setTasks([...tasks, task]);
+        title = ''
+        return notificationSucess('Tarefa Adicionada!')
+    }
+
+    const completeTask = (id) =>{
+        
+    }
+
 
     return (
-    
-    <div className={`bg-night h-lvh gap-50`}>
+    <div className={`bg-night h-lvh gap-50 `}>
         <NavBar />
-        <div className={`flex flex-col h-full overflow-hidden p-6 `}>
+        <Toaster position="bottom-right"/>
+        <div className={`flex flex-col h-full overflow-hidden  p-6   `}>
             {/**
              * Titulo
              */}
@@ -29,7 +45,7 @@ const [tasks, setTasks] = useState([
 
 
             <div className="grid grid-cols-3 gap-4">
-                <div className="bg-blackOlive p-4 rounded-lg shadow-md border border-amber-400">
+                <div className="bg-blackOlive p-4 rounded-lg shadow-md border border-amber-400 ">
                     <h3 className="text-white font-medium">Tarefas Pendentes</h3>
                     <p className="text-3xl font-bold text-jonquil mt-2 text-end">{(tasks.filter((task) => task.status == "Pendente")).length}</p>
                 </div>
@@ -44,44 +60,46 @@ const [tasks, setTasks] = useState([
             </div>
             
 
-                <div className="grid grid-cols-1 gap-4 mt-4 max-h-[80%] "> 
+                <div className="grid grid-cols-1 gap-4 mt-4 max-h-[60%] "> 
                     <div>
+                    <h2 className="text-1xl font-bold text-jonquil  mb-2">Suas Tarefas:</h2>
+
+                    <div className="flex gap-4">
+    
+                            <input type="text" id="task" placeholder="Digite sua tarefa" name="task" className="w-[95%] p-2 rounded-lg border text-jonquil border-amber-400 focus:outline-none focus:border-amber-300" />
+                            <button className="w-[5%] min-w-10 justify-items-center rounded-lg p-2 bg-amber-400 cursor-pointer hover:bg-amber-500 ease-linear duration-150" onClick={handleAddTask} ><Save className="text-blackOlive" /></button>
 
                     </div>
-                    <div className="overflow-auto  rounded-lg flex-row justify-center items-center ">
-                    {[...Array(12)].map((_, index) => (
-                        <div className="pr-5 py-2">
+                    </div>
+                    <div className="overflow-auto pr-2  rounded-lg flex-row justify-center items-center custom-scrollbar">
+                        <div className=" gap-5 flex flex-col">
+                        {
+                            tasks.filter((task)=> task.status == "Pendente").map((task) =>{
+                                return(
+                                    <div className="p-4 bg-blackOlive rounded-lg border border-amber-500 flex flex-row">
+                                        <div className=" w-[95%] items-center flex">
+                                            <div className="text-white">{task.title}</div>
+                                        </div>
 
-                    <div key={index} className="p-4 bg-blackOlive rounded-lg ">
-                                                <div className="text-jonquil text-lg mb-2">Seção de Teste {index + 1}</div>
-                                                <div className="text-white">Duis aute irure dolor in reprehenderit in voluptate.</div>
+                                        <div className=" flex justify-center  w-[5%]">
+                                            <div className="flex flex-col items-center gap-2  ">
+                                                <CircleCheck className="color-greenOlive cursor-pointer" onClick={(e)=>(console.log(task.id))}/>
+                                                <CircleX className="color-redDeep cursor-pointer"/>
                                             </div>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
                         </div>
-                        ))}                        
+
+
                     </div>
                 </div>
 
 
 
-            {/* <div className="mt-8">
-                <h2 className="text-xl font-bold text-jonquil mb-4">Tarefas Recentes</h2>
-                <div className="bg-blackOlive p-4 rounded-lg shadow-md border border-amber-400">
-                    <div className="space-y-4">
-                        {tasks.map((task) => (
-                            <div key={task.id} className="flex justify-between items-center ">
-                                <span className="text-white">{task.title}</span>
-                                <span className={`text-sm px-2 py-1 rounded-full ${
-                                    task.status === "Pendente" ? "bg-red-500" : 
-                                    task.status === "Em Andamento" ? "bg-yellow-500" : 
-                                    "bg-green-500"
-                                } text-white`}>
-                                    {task.status}
-                                </span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div> */}
+
             </div>
         </div>
 )

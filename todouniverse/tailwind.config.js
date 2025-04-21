@@ -16,10 +16,11 @@ export default {
             text_yellow: '#85754d',
             text_white: '#f0f0f0',
             text_gray: '#bababa',
-          }
+          },
+          
           
       },
     },
-    plugins: [],
+    plugins: [require('tailwind-scrollbar')],
   }
   

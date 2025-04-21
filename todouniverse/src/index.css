@@ -8,10 +8,15 @@
     background-color: #f0f0f0;
 }
 
+
+
 .bg-jet {
     background-color: #2a2929;
 }
 
+.text-jet{
+    color: #2a2929
+}
 .bg-blackOlive {
     background-color: #444342;
 }
@@ -54,9 +59,35 @@
     background: linear-gradient(to right, #2a2929, #0f0f0f);
 }
 
+.color-greenOlive{
+    color: #99bd25;
+}
+
+.border-greenOlive{
+    border: solid #99bd25 2px;
+}
+
+.color-redDeep{
+    color: #c42525;
+}
 /* #root {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     ;
 } */
+@layer utilities {
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+  
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: #ffb400; /* azul */
+      border-radius: 4px;
+    }
+  
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background-color: #2a2929; /* cinza escuro */
+    }
+  }
+  
