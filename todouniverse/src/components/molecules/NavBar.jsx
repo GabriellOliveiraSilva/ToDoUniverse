@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { navBarIsOpen } from '../../store/store';
+import { navBarIsOpen, deviceIsMoile } from '../../store/store';
 
 const NavBar = () => {
   const {isOpen, setIsOpen} = navBarIsOpen()
-  const [isMobile, setIsMobile] = useState(false);
+  const {isMobile, setIsMobile} = deviceIsMoile();
   const location = useLocation();
 
   // Verifica se o dispositivo é móvel
@@ -25,17 +25,13 @@ const NavBar = () => {
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
-  // // Fecha o menu quando a rota muda 
-  // useEffect(() => {
-  //   setIsOpen(false);
-  // }, [location]);
+
 
   useEffect(()=>{
 
   },[])
 
   const toggleMenu = () => {
-    console.log('Abrindo menu mobile')
     setIsOpen(!isOpen);
   };
 

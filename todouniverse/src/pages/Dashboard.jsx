@@ -2,6 +2,7 @@
 import { useState } from "react"
 import { navBarIsOpen } from "../store/store";
 import NavBar from "../components/molecules/NavBar";
+import { Footer } from "../components/molecules/Footer";
 import { Save, CircleCheck, CircleX   } from 'lucide-react';
 import { notificationSucess, notificationAlert } from "../components/molecules/Notification";
 import { Toaster } from "react-hot-toast";
@@ -12,7 +13,7 @@ const {isOpen} =navBarIsOpen()
 
 
     const handleAddTask = (e) =>{
-        let title = document.getElementById('task').value
+        let title = document.getElementById('task')
         if(!title){
             notificationAlert('A tarefa não pode estar vazia')
             return
@@ -20,24 +21,28 @@ const {isOpen} =navBarIsOpen()
         let id = tasks.length + 1
         let task = {
             id: id,
-            title: title,
+            title: title.value,
             status: 'Pendente'
         }
         setTasks([...tasks, task]);
-        title = ''
+        title.value = ''
         return notificationSucess('Tarefa Adicionada!')
     }
 
-    const completeTask = (id) =>{
-        
+    const removeTask = (id) =>{
+        setTasks(tasks.filter((task) => task.id !== id))
+        return notificationSucess("Tarefa Removida")
     }
 
+    const completeTask = (id) =>{
+        setTasks(tasks.map(task => task.id === id ? {...task, status: "Concluída"}: task))
+    }
 
     return (
     <div className={`bg-night h-lvh gap-50 `}>
         <NavBar />
         <Toaster position="bottom-right"/>
-        <div className={`flex flex-col h-full overflow-hidden  p-6   `}>
+        <div className={`flex flex-col h-full overflow-auto  p-6   `}>
             {/**
              * Titulo
              */}
@@ -67,6 +72,7 @@ const {isOpen} =navBarIsOpen()
                     <div className="flex gap-4">
     
                             <input type="text" id="task" placeholder="Digite sua tarefa" name="task" className="w-[95%] p-2 rounded-lg border text-jonquil border-amber-400 focus:outline-none focus:border-amber-300" />
+                            <select name="project" id="project">Selecione um projeto</select>
                             <button className="w-[5%] min-w-10 justify-items-center rounded-lg p-2 bg-amber-400 cursor-pointer hover:bg-amber-500 ease-linear duration-150" onClick={handleAddTask} ><Save className="text-blackOlive" /></button>
 
                     </div>
@@ -83,8 +89,8 @@ const {isOpen} =navBarIsOpen()
 
                                         <div className=" flex justify-center  w-[5%]">
                                             <div className="flex flex-col items-center gap-2  ">
-                                                <CircleCheck className="color-greenOlive cursor-pointer" onClick={(e)=>(console.log(task.id))}/>
-                                                <CircleX className="color-redDeep cursor-pointer"/>
+                                                <CircleCheck className="color-greenOlive cursor-pointer" onClick={(e)=>completeTask(task.id)}/>
+                                                <CircleX className="color-redDeep cursor-pointer" onClick={(e)=>removeTask(task.id)}/>
                                             </div>
                                         </div>
                                     </div>
@@ -100,7 +106,8 @@ const {isOpen} =navBarIsOpen()
 
 
 
-            </div>
         </div>
+        <Footer/>
+    </div>
 )
 }

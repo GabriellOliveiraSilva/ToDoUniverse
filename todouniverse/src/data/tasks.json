@@ -1,4 +1,4 @@
-[    { "id": 1, "title": "Completar relatório", "status": "Pendente" },
+[{ "id": 1, "title": "Completar relatório", "status": "Pendente" },
 { "id": 2, "title": "Reunião com cliente", "status": "Em Andamento" },
 { "id": 3, "title": "Revisar código", "status": "Concluída" },
 { "id": 4, "title": "Desenvolver nova feature", "status": "Em Andamento" },
