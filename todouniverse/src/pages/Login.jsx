@@ -10,10 +10,10 @@ export default function Login() {
     const navigate = useNavigate();
 
     return (
-        <div className="w-screen h-screen flex items-center justify-center bg-night">
-            <div className="rounded-xl overflow-hidden bg-blackOlive w-[30%] min-w-100 h-[90%] flex shadow-md flex-col">
-                <div className="bg-jonquil w-full h-[30%] flex flex-col items-center justify-center">
-                    <h1 className="text-4xl text-blackOlive font-bold">ToDo Universe</h1>
+        <div className="w-scree overflow-hidden h-screen flex items-center justify-center bg-night ">
+            <div className="rounded-xl bg-blackOlive w-[30%] min-w-80 h-[90%] sm:max-h-200 sm:min-w-100 sm:border-amber-300 flex shadow-md flex-col ">
+                <div className="bg-jonquil rounded-t-xl w-full h-[30%] flex flex-col items-center justify-center">
+                    <h1 className="text-4xl  text-blackOlive font-bold">ToDo Universe</h1>
                     <span className="text-blackOlive text-sm">Eleve sua produtividade</span>
                 </div>
                 <div className=" h-full flex justify-center  pt-10">

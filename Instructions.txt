@@ -119,4 +119,5 @@ export default {
 7. Biblioteca de ícones
 >> npm install lucide-react
 
-8. Biblioteca para notificações
+8. Biblioteca para notificações:
+>> npm install react-hot-toast
